@@ -1,56 +1,39 @@
-<?php
+<?php 
 
 function triBulles($tab){
-    $n=count($tab);
-    $compt=0;
-    
-
-    do{
-        $compt=0;
-        for($j=0;$j<$n-1;$j++){
-            if( $tab[$j]>$tab[$j+1]){
-                $temp=$tab[$j];
-                $tab[$j]=$tab[$j+1];
-                $tab[$j+1]=$temp;
-                $compt++;
-                
+    $n = count($tab);
+    for($i=0; $i<$n-1; $i++){
+        for($j=0; $j<$n-1-$i; $j++){
+            if($tab[$j]>$tab[$j+1]){
+                $temp = $tab[$j];
+                $tab[$j] = $tab[$j+1];
+                $tab[$j+1] = $temp;
             }
         }
-
-    }while($compt!=0);
+    }
     return $tab;
 }
 
-function triBullesCompt($tab){
-    $n=count($tab);
-    $comparaison=0;
-    
-
-    do{
-        $compt=0;
-        for($j=0;$j<$n-1;$j++){
-            if( $tab[$j]>$tab[$j+1]){
-                $comparaison++;
-                $temp=$tab[$j];
-                $tab[$j]=$tab[$j+1];
-                $tab[$j+1]=$temp;
-                $compt++;
-                
+function triBullesCompte($tab){
+    $n = count($tab);
+    $compteur = 0;
+    for($i=0; $i<$n-1; $i++){
+        for($j=0; $j<$n-1-$i; $j++){
+            $compteur++;
+            if($tab[$j]>$tab[$j+1]){
+                $temp = $tab[$j];
+                $tab[$j] = $tab[$j+1];
+                $tab[$j+1] = $temp;
             }
         }
-
-    }while($compt!=0);
-    return $comparaison;
+    }
+    return $compteur;
 }
 
-
-
- function triBullesChrono ( $tab ) {
-    $debut = microtime ( true ) ;
-    triBulles ( $tab ) ;
-    $fin = microtime ( true ) ;
-    return round (( $fin - $debut ) * 1000 , 2) ; // en ms
- }
-
-
+function triBullesChrono ( $tab ) {
+    $debut = microtime ( true );
+    triBulles ( $tab );
+    $fin = microtime ( true );
+    return round (( $fin - $debut ) * 1000 , 2); // en ms
+}
 ?>
